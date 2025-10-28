@@ -38,11 +38,7 @@ def schedule_to_html(schedule:list):
         '''
 
         number_of_lesson += 1
-
-    html += f'''
-    </tbody>
-    </table>
-    '''
+        
     return html
 
     
