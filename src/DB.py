@@ -1,24 +1,27 @@
 import sqlite3
+con = sqlite3.connect('database.db')
+cur = con.cursor()
+ 
+cur.execute('''
+    CREATE TABLE IF NOT EXISTS Teachers (
+            name TEXT,
+            email TEXT
+            )
+''')
+con.commit()
 
-class DB:
+def close_db():
+    con.close()
 
-    con = sqlite3.connect('database.db')
-    cur = con.cursor()
+def get_email_by_name(name:str):
+    cur.execute('SELECT email FROM Teachers WHERE name = ?', (name,))
 
-    def __init__(self):
-        self.cur.execute('''
-        CREATE TABLE IF NOT EXISTS Teachers (
-                    name TEXT,
-                    email TEXT
-                    )
-        ''')
-        self.con.commit()
-
-    def get_email_by_name(self, name:str):
-        self.cur.execute('SELECT email FROM Teachers WHERE name = ?', (name,))
-        return self.cur.fetchone()[0]
+    email_tuple = cur.fetchone()
+    if email_tuple != None:
+        return email_tuple[0]
+    else:
+        return None
 
 
 if __name__ == '__main__':
-    db = DB()
-    db.con.close()
+    con.close()
