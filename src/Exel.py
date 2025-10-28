@@ -27,4 +27,4 @@ def get_data_to_exel(path:str):
     
         
 if __name__ == "__main__":
-    get_data_to_exel('src/main/23102025.xls')
+    get_data_to_exel('src/23102025.xls')
