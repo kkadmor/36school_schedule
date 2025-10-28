@@ -10,7 +10,7 @@ def send_simple_email(smtp_server, port, login, password,
     msg['To'] = to_addr
     msg['Subject'] = subject
     
-    msg.attach(MIMEText(body, 'plain'))
+    msg.attach(MIMEText(body, 'html'))
     
     try:
         server = smtplib.SMTP(smtp_server, port)
