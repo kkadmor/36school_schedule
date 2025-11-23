@@ -1,6 +1,18 @@
-import services
+import os
+import sys
+import threading
+import webbrowser
+import time
+from app import app
 
-if __name__ == "__main__":
-    services.set_schedule_path('src/23102025.xls')
-    services.send_shcedule()
-    services.DB.close_db()
+def open_browser():
+    time.sleep(3)  # Ожидание запуска сервера
+    webbrowser.open('http://localhost:5000')
+
+if __name__ == '__main__':
+    browser_thread = threading.Thread(target=open_browser)
+    browser_thread.daemon = True
+    browser_thread.start()
+    
+
+    app.run(host='0.0.0.0', port=5000, debug=False)
